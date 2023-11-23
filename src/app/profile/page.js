@@ -1,9 +1,12 @@
 'use client';
 import {useSession} from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
+import UserTabs from "../../components/layout/UserTabs";
+import EditableImage from "../../components/layout/EditableImage";
 
 export default function ProfilePage(){
     const session= useSession();
@@ -14,6 +17,8 @@ export default function ProfilePage(){
     const [postalCode, setPostalCode]=useState('');
     const [city, setCity]=useState('');
     const [country, setCountry]=useState('');
+    const [isAdmin, setIsAdmin]=useState(false);
+    const [profileFetched, setProfileFetched]=useState(false);
 
     const {status}=session;
 
@@ -23,11 +28,14 @@ export default function ProfilePage(){
       setImage(session.data.user.image);
       fetch('/api/profile').then(response => {
         response.json().then(data => {
+
           setPhone(data.phone);
           setStreetAddress(data.streetAddress);
           setPostalCode(data.postalCode);
           setCity(data.city);
           setCountry(data.country);
+          setIsAdmin(data.admin);
+          setProfileFetched(true);
         })
       });
 
@@ -69,38 +77,11 @@ export default function ProfilePage(){
     );
         
     }
-
-    async function handleFileChange(ev){
-      const files=ev.target.files;
-      if(files?.length === 1){
-       const data=new FormData;
-       data.set('files', files[0]);
-      
-       const uploadPromise= fetch('/api/upload', {
-         method:'POST',
-         body: data,
-       }).then(response => {
-        if(response.ok) {
-        return response.json().then(link => {
-         setImage(link); 
-        })
-      }
-      throw new Error('Something went wrong');
-      });
-       
-      await toast.promise(uploadPromise, {
-                 loading: 'Uploading...',
-                 success: 'Upload complete!',
-                 error: 'Upload error',
-               });
-
-      }
-    }
   
 
-    if(status === 'loading') {
-        return (<section className="mt-8">
-               <h1 className="text-center text-primary text-4xl mb-4">Loading...</h1>
+    if(status === 'loading' || !profileFetched) {
+        return (<section className="">
+               <h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>
                </section>);
     }
 
@@ -112,26 +93,15 @@ export default function ProfilePage(){
 
     return(
         <section className="mt-8">
-            <h1 className="text-center text-primary text-4xl mb-4">Profile</h1>
-            
-            <div className="max-w-md mx-auto">
+            <UserTabs isAdmin={isAdmin}/>
+            <div className="max-w-md mx-auto mt-8">
               
-              <div className="flex gap-4">
+              <div className="grid items-start gap-4" style={{gridTemplateColumns: '.2fr .8fr'}}>
                 <div>
-                <div className="p-2 rounded-lg relative max-w-[120px]">
-                  {image && (
-                    <Image className="rounded-lg w-full h-full mb-1" src={image} width={250} height={250} alt={'avatar'}/>
-                  )}
-                  
-                  
-                  <label>
-                  <input type="file" className="hidden" onChange={handleFileChange}/> 
-                  <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
-                  </label>
-                    
+                  <EditableImage link={image} setLink={setImage}/>
                 </div>
                 
-                </div>
+                
                 <form className="grow" onSubmit={handleProfileInfoUpdate}>
                 <label>First and last name</label>
                 <input type="text" placeholder="First and last name" value={userName} onChange={ev => setUserName(ev.target.value)}/>
