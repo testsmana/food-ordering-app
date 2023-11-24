@@ -1,5 +1,6 @@
 import Image from "next/image";
 import toast from "react-hot-toast";
+import Pencil from "../icons/Pencil";
 
 export default function EditableImage({link,setLink}){
     async function handleFileChange(ev){
@@ -43,7 +44,7 @@ export default function EditableImage({link,setLink}){
                   
                   <label>
                   <input type="file" className="hidden" onChange={handleFileChange}/> 
-                  <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
+                  <span className="block border border-gray-300 rounded-lg p-2 cursor-pointer flex justify-center items-center"><Pencil className="w-4 h-4"/>&nbsp;Edit</span>
                   </label>
         </>
       );

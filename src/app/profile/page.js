@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import UserTabs from "../../components/layout/UserTabs";
 import EditableImage from "../../components/layout/EditableImage";
+import ClipboardDocumentCheck from "../../components/icons/ClipboardDocumentCheck";
 
 export default function ProfilePage(){
     const session= useSession();
@@ -125,7 +126,7 @@ export default function ProfilePage(){
                 </div>
                 <label>Country</label>
                 <input type="text" placeholder="Country" value={country} onChange={ev => setCountry(ev.target.value)}/>
-                <button type="submit">Save</button>
+                <button type="submit"><ClipboardDocumentCheck/>Save</button>
                 </form>
               </div>    
 
