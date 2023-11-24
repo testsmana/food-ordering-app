@@ -30,7 +30,7 @@ export default function MenuItemsPage(){
     }
 
     return(
-        <section className="mt-8 max-w-md mx-auto">
+        <section className="mt-8 max-w-lg mx-auto">
           <UserTabs isAdmin={true}/>
           <div className="mt-8">
             <Link href={'/menu-items/new'} className="button flex"><span>Create new menu item</span><Right/></Link>

@@ -6,18 +6,11 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import UserTabs from "../../components/layout/UserTabs";
-import EditableImage from "../../components/layout/EditableImage";
-import ClipboardDocumentCheck from "../../components/icons/ClipboardDocumentCheck";
+import UserForm from "../../components/layout/UserForm";
 
 export default function ProfilePage(){
     const session= useSession();
-    const [userName, setUserName]=useState('');
-    const [image,setImage]=useState('');
-    const [phone,setPhone]=useState('');
-    const [streetAddress, setStreetAddress]=useState('');
-    const [postalCode, setPostalCode]=useState('');
-    const [city, setCity]=useState('');
-    const [country, setCountry]=useState('');
+    const [user, setUser]=useState(null);
     const [isAdmin, setIsAdmin]=useState(false);
     const [profileFetched, setProfileFetched]=useState(false);
 
@@ -25,16 +18,9 @@ export default function ProfilePage(){
 
     useEffect(()=>{
      if(status==='authenticated'){
-      setUserName(session.data.user.name);
-      setImage(session.data.user.image);
       fetch('/api/profile').then(response => {
         response.json().then(data => {
-
-          setPhone(data.phone);
-          setStreetAddress(data.streetAddress);
-          setPostalCode(data.postalCode);
-          setCity(data.city);
-          setCountry(data.country);
+          setUser(data);
           setIsAdmin(data.admin);
           setProfileFetched(true);
         })
@@ -44,22 +30,14 @@ export default function ProfilePage(){
      }
     },[session,status]);
 
-    async function handleProfileInfoUpdate(ev){
+    async function handleProfileInfoUpdate(ev, data){
       ev.preventDefault();
 
       const savingPromise=new Promise(async (resolve, reject) =>{
         const response = await fetch('/api/profile',{
         method:'PUT',
         headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          name: userName,
-          image,
-          phone,
-          streetAddress,
-          postalCode,
-          city,
-          country
-        }),
+        body: JSON.stringify(data),
         });
         if(response.ok)
           resolve();
@@ -95,40 +73,9 @@ export default function ProfilePage(){
     return(
         <section className="mt-8">
             <UserTabs isAdmin={isAdmin}/>
-            <div className="max-w-md mx-auto mt-8">
-              
-              <div className="grid items-start gap-4" style={{gridTemplateColumns: '.2fr .8fr'}}>
-                <div>
-                  <EditableImage link={image} setLink={setImage}/>
-                </div>
-                
-                
-                <form className="grow" onSubmit={handleProfileInfoUpdate}>
-                <label>First and last name</label>
-                <input type="text" placeholder="First and last name" value={userName} onChange={ev => setUserName(ev.target.value)}/>
-                <label>Email</label>
-                <input type="email" placeholder="Email" disabled value={session.data.user.email}/>
-                <label>Phone Number</label>
-                <input type="tel" placeholder="Phone number (e.g. +3556* **** ***)" value={phone} onChange={ev => setPhone(ev.target.value)}/> 
-                <label>Street Address</label>
-                <input type="text" placeholder="Street Address" value={streetAddress} onChange={ev => setStreetAddress(ev.target.value)}/>
-                <div className="flex gap-2">
-                  <div>
-                    <label>Postal Code</label>
-                    <input type="text" placeholder="Postal Code" value={postalCode} onChange={ev => setPostalCode(ev.target.value)}/>
-                  </div>
+            <div className="max-w-lg mx-auto mt-8">
+               <UserForm user={user} onSave={handleProfileInfoUpdate}/>
                   
-                  <div>
-                    <label>City</label>
-                    <input type="text" placeholder="City" value={city} onChange={ev => setCity(ev.target.value)}/>
-                  </div>
-                 
-                </div>
-                <label>Country</label>
-                <input type="text" placeholder="Country" value={country} onChange={ev => setCountry(ev.target.value)}/>
-                <button type="submit"><ClipboardDocumentCheck/>Save</button>
-                </form>
-              </div>    
 
             </div>
         </section>
