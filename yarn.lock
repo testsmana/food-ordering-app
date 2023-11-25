@@ -3378,6 +3378,11 @@ react-dom@^18:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-flying-item@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-flying-item/-/react-flying-item-1.1.2.tgz#8219235964248d83e950af89b3171e1a606e4366"
+  integrity sha512-lR8wGHe5t5M7HhDZX8ry7T0C1RVkzw7Gfou3KAtpRolBZ0HlhDdtO0zgsxL+iLEnEJFe7HaTbVnZ9bdpBmB6LQ==
+
 react-hot-toast@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.4.1.tgz#df04295eda8a7b12c4f968e54a61c8d36f4c0994"
