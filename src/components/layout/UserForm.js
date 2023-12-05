@@ -17,7 +17,7 @@ export default function UserForm({user, onSave}){
     const {data:loggedInUserData}=useProfile();
 
     function handleAddressChange(propName, value){
-      if(propName ==='phone') setphone(value);
+      if(propName ==='phone') setPhone(value);
       if(propName ==='streetAddress') setStreetAddress(value);
       if(propName === 'postalCode') setPostalCode(value);
       if(propName ==='city') setCity(value);

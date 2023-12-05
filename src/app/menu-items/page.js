@@ -36,7 +36,7 @@ export default function MenuItemsPage(){
             <Link href={'/menu-items/new'} className="button flex"><span>Create new menu item</span><Right/></Link>
           </div>
           <div>
-            <h2 className="text-sm text-gray-500 mt-8">Edit menu item:</h2>
+          {menuItems?.length > 0 &&  (<h2 className="text-sm text-gray-500 mt-8">Edit menu item:</h2>)}
             <div className="grid grid-cols-3 gap-2">
               {menuItems?.length > 0 && menuItems.map(item =>
              <Link href={'/menu-items/edit/'+item._id} className="bg-gray-200 rounded-lg p-4 ">

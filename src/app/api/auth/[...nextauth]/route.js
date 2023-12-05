@@ -1,11 +1,12 @@
 import clientPromise from "@/libs/mongoConnect";
 import bcrypt from "bcrypt";
 import * as mongoose from "mongoose";
-import NextAuth from "next-auth";
+import NextAuth, { getServerSession } from "next-auth";
 import {User} from "@/models/User";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import { UserInfo } from "@/models/UserInfo";
 
 export const authOptions = {
   secret:process.env.SECRET,
@@ -30,9 +31,10 @@ export const authOptions = {
             const password=credentials?.password;
 
             mongoose.connect(process.env.MONGO_URL);
-            const user= await User.findOne({email});
+            //const user= await User.findOne({email});
+            const user = await authOptions.adapter.getUserByEmail(email);
             const passwordOk= user && bcrypt.compareSync(password, user.password);
-            
+            console.log({passwordOk});
             if(passwordOk){
               return user;
             }
@@ -40,8 +42,43 @@ export const authOptions = {
           }
         })
   ],
+
+  session: {
+    // Set it as jwt instead of database
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (user) {
+        token.accessToken = user.access_token;
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+
+      return session;
+    },
+  },
+
 };
 
+export async function isAdmin(){
+  const session=await getServerSession(authOptions);
+  const userEmail=session?.user?.email;
+  if(!userEmail){
+    return false;
+  }
+  const userInfo= await UserInfo.findOne({email:userEmail});
+  if(!userInfo){
+    return false;
+  }
+  return userInfo.admin;
+}
 
 const handler = NextAuth(authOptions);
 

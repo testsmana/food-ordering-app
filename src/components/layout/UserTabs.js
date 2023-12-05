@@ -17,9 +17,10 @@ export default function UserTabs({isAdmin}){
                   <Link className={path==='/categories' ? 'active' : ''} href={'/categories'}><div className="flex"><SquaresPlus/>&nbsp;Categories</div></Link>
                   <Link className={path.includes('menu-items') ? 'active' : ''} href={'/menu-items'}><div className="flex"><ListBullet/><span className="whitespace-nowrap">&nbsp;Menu Items</span></div></Link>
                   <Link className={path.includes('/users') ? 'active' : ''} href={'/users'}><div className="flex"><UserGroup/>&nbsp;Users</div></Link>
-                  <Link className={path==='/orders' ? 'active' : ''} href={'/orders'}><div className="flex"><UserGroup/>&nbsp;Orders</div></Link>
+      
                 </>
               )}
+              <Link className={path==='/orders' ? 'active' : ''} href={'/orders'}><div className="flex"><UserGroup/>&nbsp;Orders</div></Link>
             </div>
     );
 }

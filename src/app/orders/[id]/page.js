@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 export default function OrderPage(){
     const {clearCart}=useContext(CartContext);
     const [order,setOrder]=useState();
+    const [loadingOrders,setLoadingOrders]=useState(true);
     const {id}=useParams();
     useEffect(()=>{
        if(typeof window.console !== "undefined"){
@@ -17,9 +18,11 @@ export default function OrderPage(){
         }
        }
        if(id){
+        setLoadingOrders(true);
         fetch('/api/orders?_id='+id).then(res=>{
             res.json().then(orderData=>{
                 setOrder(orderData);
+                setLoadingOrders(false);
             });
         })
        }
@@ -33,21 +36,28 @@ export default function OrderPage(){
         }
     }
     
+    if(loadingOrders){
+        return(<h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>);
+    }
 
     return(
         <section className="max-w-4xl mx-auto mt-8 ">
             <div className="text-center">
                 <SectionHeaders mainHeader="Your order"/>
                 <div className="mt-4">
-                   <p className="uppercase text-gray-500 leading-4 font-semibold mb-2">Thanks for your order.</p>
-                   <p className="uppercase text-gray-500 leading-4 font-semibold ">We will call you when your order will be on the way.</p>
+                   {!order.paid && <p className="uppercase text-gray-500 leading-4 font-semibold mb-2">This payment has failed.</p>}
+                   {order.paid && <div>
+                    <p className="uppercase text-gray-500 leading-4 font-semibold mb-2">Thanks for your order.</p>
+                    <p className="uppercase text-gray-500 leading-4 font-semibold ">We will call you when your order will be on the way.</p>
+                    </div>}
+                   
                 </div>
             </div>
         {order && (
             <div className="mt-8 grid gap-8 grid-cols-2">
                 <div>
                     {order.cartProducts.map(product=>(
-                        <CartProduct product={product}/>
+                        <CartProduct key={product._id} product={product}/>
                     ))}
                     <div className="py-2 pr-[3px] flex justify-end items-center">
                         <div className="text-gray-500">Subtotal:<br/>Delivery:<br/>Total:</div> 

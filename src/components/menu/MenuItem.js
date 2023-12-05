@@ -22,8 +22,7 @@ export default function MenuItem(menuItem){
         
         addToCart(menuItem, selectedSize, selectedExtras);
         await new Promise(resolve=>setTimeout(resolve, 1000));
-        setShowPopup(false);  
-        
+        setShowPopup(false);        
         //If you want to show add to cart toast remove from comment, for now it is good display because it is FlyingButton
         //toast.success('Added to cart!');
         }
@@ -73,7 +72,7 @@ export default function MenuItem(menuItem){
                     <h3 className="text-center text-gray-600">Any extras?</h3>
                     {extraIngredientPrices.map(extraThing=>(
                         <label className="flex items-center gap-2 p-3 border rounded-md mb-1">
-                            <input type="checkbox" name={extraThing.name} onClick={ev => handleExtraThingClick(ev, extraThing)}/>{extraThing.name} +€{extraThing.price}
+                            <input type="checkbox" name={extraThing.name} onClick={ev => handleExtraThingClick(ev, extraThing)} checked={selectedExtras.map(e=>e._id).includes(extraThing._id)}/>{extraThing.name} +€{extraThing.price}
                         </label>
                     ))}
                 </div>
