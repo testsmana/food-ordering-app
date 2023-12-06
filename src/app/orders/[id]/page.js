@@ -67,7 +67,7 @@ export default function OrderPage(){
                 </div>
                 <div>
                     <div className="bg-gray-100 p-4 rounded-lg">
-                        <AddressInputs disabled={true} addressProp={...order}/>
+                        <AddressInputs disabled={true} addressProp={order}/>
                     </div>
                 </div>
             </div>
