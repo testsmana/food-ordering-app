@@ -26,8 +26,8 @@ export default function UsersPage(){
             <UserTabs isAdmin={true}/>
             <div className="mt-8 max-w-lg mx-auto ">
                 {users?.length > 0 && users.map(user=>(
-                    <div key={user._id} className="bg-gray-100 rounded-lg mb-2 p-1 px-4 flex items-center gap-4">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 grow">
+                    <div key={user._id} className="bg-gray-100 rounded-lg mb-2 p-1 px-4 items-center flex flex-col md:flex-row gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 grow">
                           <div className="text-gray-700">
                             {!!user.name && (<span>{user.name}</span>)}
                             {!user.name && (<span className="italic">No name</span>)}
