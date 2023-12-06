@@ -49,7 +49,7 @@ export default function OrdersPage(){
         <section className="mt-8 max-w-2xl mx-auto">
             <UserTabs isAdmin={profile.admin}/>
             <div className="mt-8">
-              {orders?.length=== 0 && (<p className="mt-4 uppercase text-gray-500 leading-4 font-semibold text-center">You don't have any order.</p>)}
+              {orders?.length=== 0 && (<p className="mt-4 uppercase text-gray-500 leading-4 font-semibold text-center">You don&apos;t have any order.</p>)}
               {orders?.length >0 && orders.map(order=>(
                 <div key={order._id} className="bg-gray-100 mb-2 p-4 rounded-lg flex flex-col md:flex-row items-center gap-6">
                     <div className="grow flex flex-col md:flex-row items-center gap-6">

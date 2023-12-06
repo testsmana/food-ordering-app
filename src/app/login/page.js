@@ -45,7 +45,7 @@ export default function LoginPage(){
                     Login with Google
                     </button>
         <div className="text-center my-4 text-gray-500 border-t pt-4">
-                Don't Have an Account? <Link className="underline" href={'/register'}>Register here</Link>
+                Don&apos;t Have an Account? <Link className="underline" href={'/register'}>Register here &raquo;</Link>
                 </div>
 
         </form>
