@@ -10,7 +10,7 @@ import UserGroup from "../icons/UserGroup";
 export default function UserTabs({isAdmin}){
     const path= usePathname();
     return(
-        <div className="flex mx-auto gap-2 tabs justify-center">
+        <div className="flex mx-auto gap-2 tabs justify-center flex-wrap">
               <Link  className={path==='/profile' ? 'active' : ''} href={'/profile'}><div className="flex items-center"><Profile/>&nbsp;Profile</div></Link>
               {isAdmin && (
                 <>

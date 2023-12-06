@@ -9,7 +9,7 @@ export default function Hero(){
     return(
         <section className="hero mt-1">
         {/* here you can change the size of primary image ex. py-12 smaller image, now it is py-24 */}
-        <div className="py-24"> 
+        <div className="md:py-24 py-8"> 
            <h1 className="text-4xl font-semibold">
             Everything<br/> is better<br/> with a <span className="text-primary">Pizza</span>
            </h1>
@@ -27,7 +27,7 @@ export default function Hero(){
          
         </div>
         <ScrollRotate method={"perc"}>
-        <div className="relative">
+        <div className="relative hidden md:block">
         <Image src={'/Macha-2048x2048.png'} width={600} height={600} alt={'unable to display'} />
         
         </div>

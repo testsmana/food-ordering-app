@@ -36,7 +36,7 @@ return(
                   <select value={category} onChange={ev=> setCategory(ev.target.value)} >
                   <option value="" disabled>Select category</option>
                     {categories?.length > 0 && categories.map(c => (
-                    <option value={c._id}>{c.name}</option>
+                    <option key={c._id} value={c._id}>{c.name}</option>
                   ))} </select>
                   <label >Base Price</label>
                   <input type="text" value={basePrice} onChange={ev=> setBasePrice(ev.target.value)}/>

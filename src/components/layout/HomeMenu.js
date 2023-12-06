@@ -16,7 +16,7 @@ export default function HomeMenu(){
 
     return (
         <section className="">
-        <div className="absolute left-0 right-0 w-full justify-start">
+        <div className="absolute left-0 right-0 w-full justify-start hidden lg:block">
             <div className="h-48 w-48 absolute left-[130px] -z-10 -top-[260px] text-left">
              <Image src={'/banner-bg-3.png'} alt={'Unable to display'} width={382} height={300}/>
             </div>
@@ -35,10 +35,10 @@ export default function HomeMenu(){
         subHeader={'check out'}
         mainHeader={'Our Best Sellers'} />
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-3 gap-4">
 
         {bestSellers?.length > 0 && bestSellers.map(item=>(
-            <MenuItem {...item}/>
+            <MenuItem key={item._id} {...item}/>
         ))}
         </div>
         {/* add a chili pepper in the butom of the page */}

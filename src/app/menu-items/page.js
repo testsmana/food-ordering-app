@@ -30,16 +30,16 @@ export default function MenuItemsPage(){
     }
 
     return(
-        <section className="mt-8 max-w-lg mx-auto">
+        <section className="mt-8">
           <UserTabs isAdmin={true}/>
-          <div className="mt-8">
+          <div className="mt-8  max-w-lg mx-auto">
             <Link href={'/menu-items/new'} className="button flex"><span>Create new menu item</span><Right/></Link>
           </div>
-          <div>
+          <div className="mt-8  max-w-lg mx-auto">
           {menuItems?.length > 0 &&  (<h2 className="text-sm text-gray-500 mt-8">Edit menu item:</h2>)}
             <div className="grid grid-cols-3 gap-2">
               {menuItems?.length > 0 && menuItems.map(item =>
-             <Link href={'/menu-items/edit/'+item._id} className="bg-gray-200 rounded-lg p-4 ">
+             <Link key={item._id} href={'/menu-items/edit/'+item._id} className="bg-gray-200 rounded-lg p-4 ">
                <div className="relative">
                 <Image src={item.image} alt={'Unable to display'} width={200} height={200} className="rounded-md text-center" />
                </div>

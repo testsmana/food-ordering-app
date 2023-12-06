@@ -85,7 +85,7 @@ export default function CartPage(){
             <div className="mt-8 grid gap-8 grid-cols-2">
                 <div>
                      {cartProducts?.length>0 && cartProducts.map((product, index)=>(
-                        <div className="flex gap-4 border-b py-4 items-center">
+                        <div key={index} className="flex gap-4 border-b py-4 items-center">
                         <div className="w-24"><Image src={product.image} alt={'Unable to display'} width={240} height={240}/></div>
                         <div className="grow">
                             <h3 className="font-semibold">{product.name}</h3>

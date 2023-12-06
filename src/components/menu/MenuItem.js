@@ -61,8 +61,8 @@ export default function MenuItem(menuItem){
                     <div className="py-2">
                         <h3 className="text-center text-gray-600">Pick your size</h3>
                         {sizes.map(size=>(
-                            <label className="flex items-center gap-2 p-3 border rounded-md mb-1">
-                                <input type="radio" name="size" onClick={()=>setSelectedSize(size)} checked={selectedSize?.name === size.name}/>{size.name} €{basePrice+size.price}
+                            <label key={size._id} className="flex items-center gap-2 p-3 border rounded-md mb-1">
+                                <input type="radio" name="size" onChange={()=>setSelectedSize(size)} checked={selectedSize?.name === size.name}/>{size.name} €{basePrice+size.price}
                             </label>
                         ))}
                     </div>
@@ -71,8 +71,8 @@ export default function MenuItem(menuItem){
                     <div className="py-2">
                     <h3 className="text-center text-gray-600">Any extras?</h3>
                     {extraIngredientPrices.map(extraThing=>(
-                        <label className="flex items-center gap-2 p-3 border rounded-md mb-1">
-                            <input type="checkbox" name={extraThing.name} onClick={ev => handleExtraThingClick(ev, extraThing)} checked={selectedExtras.map(e=>e._id).includes(extraThing._id)}/>{extraThing.name} +€{extraThing.price}
+                        <label key={extraThing._id} className="flex items-center gap-2 p-3 border rounded-md mb-1">
+                            <input type="checkbox" name={extraThing.name} onChange={ev => handleExtraThingClick(ev, extraThing)} checked={selectedExtras.map(e=>e._id).includes(extraThing._id)}/>{extraThing.name} +€{extraThing.price}
                         </label>
                     ))}
                 </div>

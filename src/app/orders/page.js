@@ -38,11 +38,16 @@ export default function OrdersPage(){
             <div className="mt-8">
               {orders?.length=== 0 && (<p className="mt-4 uppercase text-gray-500 leading-4 font-semibold text-center">You don't have any order.</p>)}
               {orders?.length >0 && orders.map(order=>(
-                <div className="bg-gray-100 mb-2 p-4 rounded-lg flex items-center gap-6">
-                    <div className="grow flex items-center gap-6">
+                <div key={order._id} className="bg-gray-100 mb-2 p-4 rounded-lg flex flex-col md:flex-row items-center gap-6">
+                    <div className="grow flex flex-col md:flex-row items-center gap-6">
                         <div>
-                          <div className={(order.paid ? 'bg-green-500' : 'bg-red-400')+ ' p-2 rounded-md text-white w-24 text-center'}>
-                            {order.paid ? 'Paid' : 'Not Paid'}
+                          <div className={(order.paid ? 'bg-green-500' : 'bg-red-400')+ ' p-2 rounded-md text-white w-28 text-center flex justify-center'}>
+                            {order.paid ? <><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+</svg>
+<div>&nbsp;Paid&nbsp;</div></>  : <><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg><div>&nbsp;Not&nbsp;Paid&nbsp;</div></>}
                         </div>
                         </div>
                         <div className="grow">
