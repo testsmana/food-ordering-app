@@ -17,7 +17,7 @@ function AuthLinks({status,userName}){
     </>
     );
     }
-  if(status === 'authenticated'){
+  if(status === 'unauthenticated'){
     return(
       <>
     <Link href={'/login'} >Login</Link>

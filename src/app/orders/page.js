@@ -5,16 +5,20 @@ import UserTabs from "@/components/layout/UserTabs";
 import { useEffect, useState } from "react";
 import { dataTime } from "../../libs/datetime";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function OrdersPage(){
     const [orders,setOrders]=useState([]);
     const [loadingOrders,setLoadingOrders]=useState(true);
     const {loading, data:profile}=useProfile();
+    const session= useSession();
+    const {status}=session;
 
 
 
     useEffect(()=> {
-       fetchOrders();
+       if(status==='authenticated'){
+       fetchOrders();}
     }, []);
 
     function fetchOrders(){
@@ -31,6 +35,15 @@ export default function OrdersPage(){
         return(<h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>);
     }
     
+    if(status === 'loading') {
+        return (<section className="">
+               <h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>
+               </section>);
+    }
+
+    if(status === 'unauthenticated') {
+        return redirect('/login');
+    }
 
     return(
         <section className="mt-8 max-w-2xl mx-auto">

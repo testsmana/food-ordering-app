@@ -4,6 +4,7 @@ import Right from "../icons/Right";
 import Right2 from "../icons/Right2";
 import React from 'react';
 import  { ScrollRotate } from 'react-scroll-rotate';
+import Link from "next/link";
 
 export default function Hero(){
     return(
@@ -17,12 +18,12 @@ export default function Hero(){
                 Pizza is the missing piece that makes every day complete, a simple yet delicious joy in life
             </p>
             <div className="flex gap-4 text-sm">
-                <button className="flex justify-center bg-primary uppercase  items-center flex gap-2 text-white px-4 py-2 rounded-full">Order Now
+                <Link href={'/menu'} className="flex justify-center bg-primary uppercase  items-center flex gap-2 text-white px-4 py-2 font-semibold rounded-full">Look&nbsp;at&nbsp;our&nbsp;menu
                 <Right2/>
-                </button>
-                <button className="flex border-0 items-center gap-2 px-4 py-2 text-gray-600 font-semibold">Learn more
+                </Link>
+                <Link href={'/#about'} className="flex border-0 items-center gap-2 px-4 py-2 text-gray-600 font-semibold">Our&nbsp;Story
                     <Right/>
-                </button>
+                </Link>
             </div>
          
         </div>

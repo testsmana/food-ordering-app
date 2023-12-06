@@ -31,7 +31,7 @@ return(
                   <label >Item name</label>
                   <input type="text" value={name} onChange={ev=> setName(ev.target.value)}/>
                   <label >Description</label>
-                  <input type="text" value={description} onChange={ev=> setDescription(ev.target.value)}/>
+                  <textarea type="text" rows="4" cols="50" value={description} onChange={ev=> setDescription(ev.target.value)}></textarea>
                   <label >Category<span className="text-primary">*</span></label>
                   <select value={category} onChange={ev=> setCategory(ev.target.value)} >
                   <option value="" disabled>Select category</option>
