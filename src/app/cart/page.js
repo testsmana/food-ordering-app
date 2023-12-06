@@ -82,7 +82,7 @@ export default function CartPage(){
                 <SectionHeaders mainHeader="Cart"/>
             </div>
             
-            <div className="mt-8 grid gap-8 grid-cols-2">
+            <div className="mt-8 grid gap-8 md:grid-cols-2">
                 <div>
                      {cartProducts?.length>0 && cartProducts.map((product, index)=>(
                         <div key={index} className="flex gap-4 border-b py-4 items-center">
