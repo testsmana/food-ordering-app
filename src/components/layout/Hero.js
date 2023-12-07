@@ -17,8 +17,8 @@ export default function Hero(){
             <p className="my-6 text-gray-500 text-sm">
                 Pizza is the missing piece that makes every day complete, a simple yet delicious joy in life
             </p>
-            <div className="flex gap-4 text-sm">
-                <Link href={'/menu'} className="flex justify-center bg-primary uppercase  items-center flex gap-2 text-white px-4 py-2 font-semibold rounded-full">Look&nbsp;at&nbsp;our&nbsp;menu
+            <div className="md:flex gap-4 text-sm">
+                <Link href={'/menu'} className="flex justify-center bg-primary uppercase w-min items-center flex gap-2 text-white px-4 py-2 my-4 font-semibold rounded-full">Look&nbsp;at&nbsp;our&nbsp;menu
                 <Right2/>
                 </Link>
                 <Link href={'/#about'} className="flex border-0 items-center gap-2 px-4 py-2 text-gray-600 font-semibold">Our&nbsp;Story

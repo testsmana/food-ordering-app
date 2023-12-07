@@ -39,7 +39,7 @@ export default function EditUserPage(){
       });
     }
 
-    if(loading){
+    if(loading || user==null){
         return(<h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>);
     }
 
