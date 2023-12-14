@@ -59,9 +59,9 @@ export default function Home() {
     </div>*/}
      
     </section>
-    <section className="text-center my-8" id="location">
+    <section className="text-center my-8 pb-8" id="location">
     <SectionHeaders subHeader={'Our location'} mainHeader={'Visit us'}/>
-    <div className="mt-8 flex justify-center  "></div>
+    <div className="mt-8 flex justify-center "></div>
     <main className=" w-full h-[400px]">
       <MapsApp />
     </main>
