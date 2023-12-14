@@ -15,7 +15,7 @@ export interface HistoricalEvent {
   category: string;
 }
 
-const defaultPosition: [number, number] = [49, 15];
+
 
 const emptyStar = <i className="fa-regular fa-star"></i>;
 const fullStar = (
@@ -71,7 +71,7 @@ function MapsApp() {
       <div className="map-content flex flex-col gap-6 h-full">
         
         <MapContainer
-          center={defaultPosition}
+          center={[49, 15]}
           zoom={4}
           className="map-container"
         >
