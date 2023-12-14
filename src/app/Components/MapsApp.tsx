@@ -121,7 +121,7 @@ function MapsApp() {
 
       <div className="liked-events">
         <h2 className="liked-events__title">
-          <i className="fa-solid fa-star"></i>Favourite&nbsp;Restaurant
+          <i className="fa-solid fa-star"></i>Favourite&nbsp;Restaurants
         </h2>
         <ul>
           {favourites
