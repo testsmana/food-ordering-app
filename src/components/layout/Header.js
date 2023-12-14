@@ -62,6 +62,7 @@ export default function Header (){
         <Link href={'/menu'}>Menu</Link>
         <Link href={'/#about'}>About</Link>
         <Link href={'/#contact'}>Contact</Link>
+        <Link href={'/#location'}>Location</Link>
         <AuthLinks status={status} userName={userName}/>
         </div>
         )}
@@ -78,6 +79,7 @@ export default function Header (){
         <Link href={'/menu'}>Menu</Link>
         <Link href={'/#about'}>About</Link>
         <Link href={'/#contact'}>Contact</Link>
+        <Link href={'/#location'}>Location</Link>
       </nav>
       
       <nav className="flex items-center gap-4 text-gray-500 font-semibold">

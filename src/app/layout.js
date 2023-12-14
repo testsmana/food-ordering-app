@@ -3,7 +3,7 @@ import './globals.css';
 import Header from '../components/layout/Header';
 import { AppProvider } from '@/components/AppContext';
 import { Toaster } from 'react-hot-toast';
-
+import "./globalss.scss";
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
@@ -15,6 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </head>
       <body className={roboto.className}>
         {/* here you can change width of all page*/}
         <main className="max-w-5xl mx-auto p-4">

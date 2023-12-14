@@ -7,7 +7,9 @@ section.hero{
     @apply block md:grid;
     grid-template-columns: .4fr .6fr;
 }
-
+.font-semibold {
+    font-weight: 660 !important;
+}
 select,
 input[type="email"], 
 input[type="password"],
