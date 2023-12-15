@@ -21,14 +21,6 @@ function Filter({ setSelectedCategory }: Props) {
     document.body.className = theme;
   }, [theme]);
 
-  const changeTheme = () => {
-    if (theme === "light-theme") {
-      setTheme("dark-theme");
-    } else {
-      setTheme("light-theme");
-    }
-  };
-
   return (
     
       <div className="filter__select">
@@ -40,22 +32,6 @@ function Filter({ setSelectedCategory }: Props) {
             </option>
           ))}
         </select>
-      
-
-      {/* <div className="theme-toggler">
-        <input
-          type="checkbox"
-          id="theme-toggler__checkbox"
-          className="theme-toggler__checkbox"
-        />
-        <label
-          htmlFor="theme-toggler__checkbox"
-          className="theme-toggler__label"
-          onClick={changeTheme}
-        >
-          Toggle
-        </label>
-      </div> */}
     </div>
   );
 }
