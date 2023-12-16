@@ -3,8 +3,13 @@ import {signIn} from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 
 export default function RegisterPage(){
+    const session= useSession();
+    const {status}=session;
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
     const [creatingUser, setCreatingUser]=useState(false);
@@ -28,6 +33,16 @@ export default function RegisterPage(){
     setCreatingUser(false);
     }
      
+    if(status === 'loading') {
+        return (<section className="">
+               <h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>
+               </section>);
+    }
+
+    if(status === 'authenticated') {
+        return redirect('/');
+    }
+    
     return(
         <section className="mt-8">
             <h1 className="text-center text-primary text-4xl mb-4">Register</h1>
