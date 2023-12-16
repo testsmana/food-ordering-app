@@ -3,8 +3,13 @@ import {signIn} from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function LoginPage(){
+    const session= useSession();
+    const {status}=session;
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
     const [loginInProgress, setLoginInProgress]=useState(false);
@@ -12,11 +17,25 @@ export default function LoginPage(){
         ev.preventDefault();
         setLoginInProgress(true);
         
-        await signIn('credentials', {email, password, callbackUrl:'/'});
+        await signIn('credentials', {email, password, redirect: false })
+        .then(({ ok, error }) => {
+            if (ok) {
+                location.replace("/");
+            } else {
+                console.log(error)
+                toast.error("Credentials do not match!");
+            }
+        })
+
 
 
         setLoginInProgress(false);
     }
+
+    if(status === 'authenticated') {
+        return redirect('/');
+    }
+
     return(
         <section className="mt-8">
             <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
