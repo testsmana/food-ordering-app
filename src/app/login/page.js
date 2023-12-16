@@ -32,6 +32,12 @@ export default function LoginPage(){
         setLoginInProgress(false);
     }
 
+    if(status === 'loading') {
+        return (<section className="">
+               <h1 className="text-center text-primary text-4xl mb-4 mt-4">Loading...</h1>
+               </section>);
+    }
+
     if(status === 'authenticated') {
         return redirect('/');
     }
