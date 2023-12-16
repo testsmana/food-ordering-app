@@ -17,18 +17,12 @@ export default function LoginPage(){
         ev.preventDefault();
         setLoginInProgress(true);
         
-        await signIn('credentials', {email, password, redirect: false })
+        await signIn('credentials', {email, password, redirect:false })
         .then(({ ok, error }) => {
-            if (ok) {
-                location.replace("/");
-            } else {
-                console.log(error)
+            if (error) {
                 toast.error("Credentials do not match!");
             }
         })
-
-
-
         setLoginInProgress(false);
     }
 
