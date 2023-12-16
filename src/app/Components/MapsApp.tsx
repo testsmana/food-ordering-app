@@ -72,6 +72,7 @@ function MapsApp() {
         
         <MapContainer
           center={[49, 15]}
+          minZoom = {1}
           zoom={4}
           className="map-container"
         >
